@@ -1,16 +1,15 @@
 import { useState } from 'react'
 import {
-  Button,
   Container,
-  Typography,
   Box,
   Card,
   CardContent,
   CardHeader,
 } from '@mui/material'
 
-import isInteger from '../../utils/helper/isInteger'
+import isNumber from '../../utils/helper/isNumber'
 import TextInput from './TextInput'
+import Buttons from '../Button/Buttons'
 
 const TextInputFields = () => {
   const [input1, setInput1] = useState('')
@@ -21,8 +20,8 @@ const TextInputFields = () => {
   const handleInput1Change = (event) => {
     const value = event.target.value
     setInput1(value)
-    if (!isInteger(value) && value !== '') {
-      setError1('Please enter a valid integer.')
+    if (!isNumber(value) && value !== '') {
+      setError1('Please enter a valid number.')
     } else {
       setError1('')
     }
@@ -31,28 +30,31 @@ const TextInputFields = () => {
   const handleInput2Change = (event) => {
     const value = event.target.value
     setInput2(value)
-    if (!isInteger(value) && value !== '') {
-      setError2('Please enter a valid integer.')
+    if (!isNumber(value) && value !== '') {
+      setError2('Please enter a valid number.')
     } else {
       setError2('')
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (operation) => {
     if (!error1 && !error2) {
       const num1 = parseInt(input1, 10) || 0
       const num2 = parseInt(input2, 10) || 0
       console.log(`Input 1: ${num1}, Input 2: ${num2}`)
     }
   }
+
   return (
     <Container
       maxWidth="sm"
       sx={{
+        mt: 4,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
+        width: '100vw',
       }}
     >
       <Card
@@ -63,6 +65,7 @@ const TextInputFields = () => {
           bgcolor: 'background.paper',
           padding: 8,
           boxShadow: 3,
+          borderRadius: 3,
         }}
       >
         <CardHeader
@@ -73,8 +76,8 @@ const TextInputFields = () => {
             color: 'black',
             padding: 2,
             '& .MuiCardHeader-title': {
-              fontSize: '1.5rem', 
-              fontWeight: 'bold', 
+              fontSize: '1.5rem',
+              fontWeight: 'bold',
             },
           }}
         />
@@ -97,15 +100,12 @@ const TextInputFields = () => {
               input={input2}
               inputText={'Input 2'}
             />
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ mt: 2 }}
-              onClick={handleSubmit}
-              disabled={error1 || error2}
-            >
-              Log Values
-            </Button>
+            <Buttons
+              handleAddition={() => handleSubmit('addition')}
+              handleSubtraction={() => handleSubmit('subtraction')}
+              error1={error1}
+              error2={error2}
+            />
           </Box>
         </CardContent>
       </Card>
