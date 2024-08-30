@@ -16,6 +16,16 @@ const Calculator = () => {
     error2: '',
   })
 
+  const handleReset = () => {
+    setInputs({
+      input1: '',
+      input2: '',
+      error1: '',
+      error2: '',
+    })
+    setResult(null)
+  }
+
   const handleInputChange = (name, event) => {
     const inputToErrMap = { input1: 'error1', input2: 'error2' }
     const value = event.target.value
@@ -79,8 +89,8 @@ const Calculator = () => {
           height: 'auto',
           bgcolor: 'background.paper',
           padding: 8,
-          boxShadow: 3,
-          borderRadius: 3,
+          boxShadow: 8,
+          borderRadius: 4,
         }}
       >
         <CardHeader
@@ -109,6 +119,7 @@ const Calculator = () => {
               handleSubtraction={() => handleSubmit('subtraction')}
               error1={inputs.error1}
               error2={inputs.error2}
+              handleReset={handleReset}
             />
             {result !== null && <Result result={result} />}
           </Box>
