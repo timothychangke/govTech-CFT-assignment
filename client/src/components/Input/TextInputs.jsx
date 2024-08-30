@@ -1,5 +1,13 @@
 import { useState } from 'react'
-import { TextField, Button, Container, Typography, Box } from '@mui/material'
+import {
+  Button,
+  Container,
+  Typography,
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+} from '@mui/material'
 
 import isInteger from '../../utils/helper/isInteger'
 import TextInput from './TextInput'
@@ -38,24 +46,69 @@ const TextInputFields = () => {
     }
   }
   return (
-    <Container maxWidth="sm" sx={{ mt: 4 }}>
-      <Typography variant="h4" align="center" gutterBottom>
-        GovTech CFT Intern Assignment
-      </Typography>
-
-      <Box display="flex" flexDirection="column" alignItems="center" gap="20px">
-        <TextInput
-          handleInputChange={handleInput1Change}
-          error={error1}
-          input={input1}
+    <Container
+      maxWidth="sm"
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+      }}
+    >
+      <Card
+        sx={{
+          width: '100%',
+          maxWidth: 800,
+          height: 'auto',
+          bgcolor: 'background.paper',
+          padding: 8,
+          boxShadow: 3,
+        }}
+      >
+        <CardHeader
+          title="GovTech CFT Intern Assignment"
+          subheader="Timothy Chang"
+          sx={{
+            textAlign: 'center',
+            color: 'black',
+            padding: 2,
+            '& .MuiCardHeader-title': {
+              fontSize: '1.5rem', 
+              fontWeight: 'bold', 
+            },
+          }}
         />
-        <TextInput
-          handleInputChange={handleInput2Change}
-          error={error2}
-          input={input2}
-        />
-
-      </Box>
+        <CardContent>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            gap="20px"
+          >
+            <TextInput
+              handleInputChange={handleInput1Change}
+              error={error1}
+              input={input1}
+              inputText={'Input 1'}
+            />
+            <TextInput
+              handleInputChange={handleInput2Change}
+              error={error2}
+              input={input2}
+              inputText={'Input 2'}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{ mt: 2 }}
+              onClick={handleSubmit}
+              disabled={error1 || error2}
+            >
+              Log Values
+            </Button>
+          </Box>
+        </CardContent>
+      </Card>
     </Container>
   )
 }

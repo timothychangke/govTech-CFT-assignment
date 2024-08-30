@@ -1,9 +1,9 @@
 import { TextField } from '@mui/material'
 
-const TextInput = ({ handleInputChange, error, input }) => {
+const TextInput = ({ handleInputChange, error, input, inputText }) => {
   return (
     <TextField
-      label="Input 1"
+      label={inputText}
       variant="outlined"
       value={input}
       onChange={handleInputChange}
