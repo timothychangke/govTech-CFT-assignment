@@ -7,7 +7,7 @@ const SubtractionButton = ({ handleSubtraction, error1, error2 }) => {
       color="primary"
       onClick={handleSubtraction}
       disabled={error1 || error2}
-      sx={{ flex: 1, height: 50 }}
+      sx={{ flex: 1, height: 50, borderWidth: 3, padding: 3 }}
       data-testid="subtraction-button"
     >
       Subtraction
