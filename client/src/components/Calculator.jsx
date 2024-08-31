@@ -11,37 +11,42 @@ import styles from './Styling/calculator.module.css'
 const MAX_SAFE_NUMBER = Number.MAX_SAFE_INTEGER
 const MIN_SAFE_NUMBER = Number.MIN_SAFE_INTEGER
 
+/**
+ * Calculator component to perform basic arithmetic operations.
+ * Supports input validation, result display via API call, reseting and local storage persistence.
+ */
 const Calculator = () => {
+  // State to hold the result of the calculation
   const [result, setResult] = useState(null)
-  const [inputs, setInputs] = useState({
+
+  // State to manage input values and error messages
+  const [inputState, setInputState] = useState({
     input1: '',
     input2: '',
     error1: '',
     error2: '',
   })
-
+  // Load saved state from localStorage when component is first mounted
   useEffect(() => {
     const savedInputs = localStorage.getItem('calculatorState')
     if (savedInputs) {
-      console.log('Loaded from localStorage:', savedInputs)
-      setInputs(JSON.parse(savedInputs))
-    } else {
-      console.log('No data found in localStorage.')
-    }
+      setInputState(JSON.parse(savedInputs))
+    } 
   }, [])
 
+  // Save the current state to localStorage whenever inputs change, only if input is non-null
   useEffect(() => {
-    console.log('Saving to localStorage:', inputs)
     if (
-      inputs.input1 !== '' ||
-      inputs.input2 !== '' ||
-      inputs.error1 !== '' ||
-      inputs.error2 !== ''
+      inputState.input1 !== '' ||
+      inputState.input2 !== '' ||
+      inputState.error1 !== '' ||
+      inputState.error2 !== ''
     ) {
-      localStorage.setItem('calculatorState', JSON.stringify(inputs))
+      localStorage.setItem('calculatorState', JSON.stringify(inputState))
     }
-  }, [inputs])
+  }, [inputState])
 
+  // Reset inputs and result, and clears the saved state stored in local storage
   const handleReset = () => {
     const defaultState = {
       input1: '',
@@ -49,18 +54,21 @@ const Calculator = () => {
       error1: '',
       error2: '',
     }
-    setInputs(defaultState)
+    setInputState(defaultState)
     setResult(null)
     window.localStorage.setItem('calculatorState', JSON.stringify(defaultState));
   }
 
+  // Handles changes to input fields by validating and updating the state.
   const handleInputChange = (name, event) => {
     const inputToErrMap = { input1: 'error1', input2: 'error2' }
-    const value = event.target.value
-    const processedValue = value === '' ? '0' : value
-    setInputs((prevInputs) => {
+    const inputValue = event.target.value
+    const processedValue = inputValue === '' ? '0' : inputValue
+    setInputState((prevInputs) => {
       const numericValue = Number(processedValue)
       let errorMessage = ''
+
+      // Validate the input value
       if (!isNumber(processedValue)) {
         errorMessage = 'Please enter a valid number.'
       } else if (numericValue > MAX_SAFE_NUMBER) {
@@ -68,39 +76,46 @@ const Calculator = () => {
       } else if (numericValue < MIN_SAFE_NUMBER) {
         errorMessage = `Value is below minimum limit.`
       }
+
+      // Update state with the new value and any validation errors
       const newInputs = {
         ...prevInputs,
-        [name]: value,
+        [name]: inputValue,
         [inputToErrMap[name]]: errorMessage,
       }
-      // window.localStorage.setItem('calculatorState', JSON.stringify(newInputs));
       return newInputs
     })
   }
 
+  // Handles API requests
   const handleSubmit = async (operation) => {
-    if (!inputs.error1 && !inputs.error2) {
-      const num1 = parseFloat(inputs.input1) || 0
-      const num2 = parseFloat(inputs.input2) || 0
-      let res
+    // Check for input errors before proceeding
+    if (!inputState.error1 && !inputState.error2) {
+      const num1 = parseFloat(inputState.input1) || 0
+      const num2 = parseFloat(inputState.input2) || 0
+      let result
+
+      // Check for Integer Overflow or Underflow errors
       switch (operation) {
         case 'addition':
-          res = num1 + num2
-          console.log(res)
+          result = num1 + num2
+          console.log(result)
           break
         case 'subtraction':
-          res = num1 - num2
+          result = num1 - num2
           break
         default:
           toast.error('Invalid operation')
           return
       }
-      if (res > MAX_SAFE_NUMBER) {
+      if (result > MAX_SAFE_NUMBER) {
         toast.error('Operation exceeds maximum limit')
         return
-      } else if (res < MIN_SAFE_NUMBER) {
+      } else if (result < MIN_SAFE_NUMBER) {
         toast.error('Operation is below minimum limit')
       } else {
+
+        //// Send the calculation request to the backend
         try {
           const response = await fetch('http://localhost:5000/api/calculate', {
             method: 'POST',
@@ -140,12 +155,12 @@ const Calculator = () => {
         />
         <CardContent className={styles.cardContent}>
           <Box className={styles.box}>
-            <TextInputs handleInputChange={handleInputChange} inputs={inputs} />
+            <TextInputs handleInputChange={handleInputChange} inputs={inputState} />
             <Buttons
               handleAddition={() => handleSubmit('addition')}
               handleSubtraction={() => handleSubmit('subtraction')}
-              error1={inputs.error1}
-              error2={inputs.error2}
+              error1={inputState.error1}
+              error2={inputState.error2}
               handleReset={handleReset}
             />
             {result !== null && <Result result={result} />}
