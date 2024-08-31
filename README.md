@@ -1,4 +1,4 @@
-# GovTech CFT+ assignment (Timothy Chang)
+# GovTech CFT+ Assignment (Timothy Chang)
 
 This project consists of a React frontend and an Express backend, containerized using Docker. This README provides detailed instructions on how to set up and run the application locally, as well as how to build and deploy Docker images.
 
@@ -13,7 +13,6 @@ This project consists of a React frontend and an Express backend, containerized 
 - **Docker Integration**: Docker is used for containerizing the application, ensuring consistency across different environments.
 - **API Integration**: The frontend communicates with the backend via RESTful APIs, making it easy to extend and integrate with other services.
 
-
 ## Table of Contents
 
 1. [Prerequisites](#prerequisites)
@@ -27,7 +26,9 @@ This project consists of a React frontend and an Express backend, containerized 
 5. [Docker Setup](#docker-setup)
    - [Building Docker Images](#building-docker-images)
    - [Running Docker Containers](#running-docker-containers)
-6. [Troubleshooting](#troubleshooting)
+6. [Testing Coverage](#testing-coverage)
+7. [Lessons Learned](#lessons-learned)
+8. [Troubleshooting](#troubleshooting)
 
 ## Prerequisites
 
@@ -162,6 +163,31 @@ To run the application using Docker Compose:
    docker-compose down
    ```
 
+## Testing Coverage
+
+1. **Navigate to the frontend directory:**
+
+   ```bash
+   cd client
+   ```
+
+2. **Run unit tests:**
+
+   ```bash
+   npm test
+   ```
+
+   This will execute the tests using Jest and React Testing Library. Test coverage reports can be found in the `coverage` directory.
+![2024-08-31 21 10 42](https://github.com/user-attachments/assets/1509a936-3053-4431-80ad-fb17665670f4)
+
+
+## Lessons Learned
+
+- **Docker and Containerization**: Gained practical experience in containerizing applications using Docker and Docker Compose. Understanding how to build and manage multi-container applications.
+- **Frontend and Backend Integration**: Improved skills in integrating a React frontend with an Express backend through RESTful APIs.
+- **Error Handling**: Implemented and managed error handling across different layers of the application to ensure robust and user-friendly error reporting.
+- **Testing and Coverage**: Developed and maintained unit tests for application, ensuring high code quality and reliability.
+- **Deployment and Configuration**: Gained insights into deploying Dockerized applications on various platforms and configuring environment variables for seamless integration.
 
 ## Troubleshooting
 
@@ -178,8 +204,4 @@ If you encounter issues not covered here, consult the [Docker documentation](htt
 
 ---
 
-For any questions or contributions, feel free to open an issue or pull request on the [GitHub repository](https://github.com/your-repo).
-
-```
-
-This README provides a detailed guide for setting up, running, and deploying both a React frontend and an Express backend. It includes steps for local development, Docker setup, and deployment to Railway and other platforms.
+For any questions or contributions, feel free to open an issue or pull request on the [GitHub repository](https://github.com/your-repo) or contact me at timothychangke@gmail.com
