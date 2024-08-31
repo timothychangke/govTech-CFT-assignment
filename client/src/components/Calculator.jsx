@@ -45,7 +45,7 @@ const Calculator = () => {
       const num1 = parseFloat(inputs.input1) || 0
       const num2 = parseFloat(inputs.input2) || 0
       try {
-        const response = await fetch('http://localhost:5000/calculate', {
+        const response = await fetch('http://localhost:5000/api/calculate', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
