@@ -136,7 +136,7 @@ To build Docker images for both the frontend and backend:
 1. **Navigate to the project root directory:**
 
    ```bash
-   cd /path/to/project-root
+   cd .
    ```
 
 2. **Build Docker images:**
