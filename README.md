@@ -1,6 +1,7 @@
 # GovTech CFT+ Assignment (Timothy Chang)
 
 This project consists of a React frontend and an Express backend, containerized using Docker. This README provides detailed instructions on how to set up and run the application locally, as well as how to build and deploy Docker images.
+
 ![2024-08-31 21 13 15](https://github.com/user-attachments/assets/e16c9038-89e6-408e-a749-edd3250a152c)
 
 ## Features
@@ -179,6 +180,7 @@ To run the application using Docker Compose:
    ```
 
    This will execute the tests using Jest and React Testing Library. Test coverage reports can be found in the `coverage` directory.
+   
 ![2024-08-31 21 10 42](https://github.com/user-attachments/assets/1509a936-3053-4431-80ad-fb17665670f4)
 
 
