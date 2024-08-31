@@ -14,6 +14,7 @@ const TextInput = ({ handleInputChange, error, input, inputText, name }) => {
       helperText={error}
       fullWidth
       sx={{ mb: 2 }}
+      data-testid={name}
     />
   )
 }

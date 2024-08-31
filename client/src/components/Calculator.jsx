@@ -31,7 +31,7 @@ const Calculator = () => {
     const savedInputs = localStorage.getItem('calculatorState')
     if (savedInputs) {
       setInputState(JSON.parse(savedInputs))
-    } 
+    }
   }, [])
 
   // Save the current state to localStorage whenever inputs change, only if input is non-null
@@ -56,7 +56,7 @@ const Calculator = () => {
     }
     setInputState(defaultState)
     setResult(null)
-    window.localStorage.setItem('calculatorState', JSON.stringify(defaultState));
+    window.localStorage.setItem('calculatorState', JSON.stringify(defaultState))
   }
 
   // Handles changes to input fields by validating and updating the state.
@@ -114,7 +114,6 @@ const Calculator = () => {
       } else if (result < MIN_SAFE_NUMBER) {
         toast.error('Operation is below minimum limit')
       } else {
-
         //// Send the calculation request to the backend
         try {
           const response = await fetch('http://localhost:5000/api/calculate', {
@@ -143,8 +142,12 @@ const Calculator = () => {
   }
 
   return (
-    <Container maxWidth="sm" className={styles.container}>
-      <Card className={styles.card}>
+    <Container
+      maxWidth="sm"
+      className={styles.container}
+      data-testid="calculator"
+    >
+      <Card className={styles.card} data-testid="calculator-card">
         <CardHeader
           title="GovTech CFT Intern Assignment"
           subheader="Timothy Chang"
@@ -154,8 +157,11 @@ const Calculator = () => {
           }}
         />
         <CardContent className={styles.cardContent}>
-          <Box className={styles.box}>
-            <TextInputs handleInputChange={handleInputChange} inputs={inputState} />
+          <Box className={styles.box} data-testid="calculator-box">
+            <TextInputs
+              handleInputChange={handleInputChange}
+              inputs={inputState}
+            />
             <Buttons
               handleAddition={() => handleSubmit('addition')}
               handleSubtraction={() => handleSubmit('subtraction')}
