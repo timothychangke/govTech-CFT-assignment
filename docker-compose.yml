@@ -5,16 +5,20 @@ services:
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - "3000:80" # React app will be available on port 3000
+      - "3000:80"
+    networks:
+      - app
 
   backend:
     build:
       context: ./server
       dockerfile: Dockerfile
     ports:
-      - "5000:5000" # Express backend will be available on port 5000
-    environment:
-      - NODE_ENV=production
-      - PORT=5000
+      - "5000:5000" 
     depends_on:
-      - frontend # Ensure the frontend is built before the backend starts (optional)
+      - frontend 
+    networks:
+      - app
+networks:
+  app:
+    driver: bridge
