@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.card {
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    padding: 2rem;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5) !important;
+    border-radius: 2rem !important;
+  }
+
+.cardHeader {
+  text-align: center;
+  color: black;
+  padding: 1rem;
+}
+
+.cardTitle {
+  font-size: 1.8rem !important;
+  font-weight: bold;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0.25rem; 
+  }
+  
+  .buttonsGroup {
+    display: flex;
+    gap: 0.5rem; 
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .resetButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

@@ -5,10 +5,10 @@ import isNumber from '../utils/helper/isNumber'
 import TextInputs from './Input/TextInputs'
 import Buttons from './Button/Buttons'
 import Result from './Output/Result'
+import styles from './Styling/calculator.module.css'
 
 const Calculator = () => {
   const [result, setResult] = useState(null)
-
   const [inputs, setInputs] = useState({
     input1: '',
     input2: '',
@@ -60,7 +60,6 @@ const Calculator = () => {
         if (!response.ok) {
           throw new Error('Network response was not ok')
         }
-
         const data = await response.json()
         setResult(data.result)
       } catch (error) {
@@ -71,48 +70,18 @@ const Calculator = () => {
   }
 
   return (
-    <Container
-      maxWidth="sm"
-      sx={{
-        mt: 4,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        width: '100vw',
-      }}
-    >
-      <Card
-        sx={{
-          width: '100%',
-          maxWidth: 800,
-          height: 'auto',
-          bgcolor: 'background.paper',
-          padding: 8,
-          boxShadow: 8,
-          borderRadius: 4,
-        }}
-      >
+    <Container maxWidth="sm" className={styles.container}>
+      <Card className={styles.card}>
         <CardHeader
           title="GovTech CFT Intern Assignment"
           subheader="Timothy Chang"
-          sx={{
-            textAlign: 'center',
-            color: 'black',
-            padding: 2,
-            '& .MuiCardHeader-title': {
-              fontSize: '1.5rem',
-              fontWeight: 'bold',
-            },
+          className={styles.cardHeader}
+          classes={{
+            title: styles.cardTitle,
           }}
         />
-        <CardContent>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            gap="20px"
-          >
+        <CardContent className={styles.cardContent}>
+          <Box className={styles.box}>
             <TextInputs handleInputChange={handleInputChange} inputs={inputs} />
             <Buttons
               handleAddition={() => handleSubmit('addition')}

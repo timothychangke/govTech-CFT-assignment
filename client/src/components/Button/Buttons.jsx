@@ -2,6 +2,7 @@ import AdditionButton from './AdditionButton'
 import SubtractionButton from './SubtractionButton'
 import { Box } from '@mui/material'
 import ResetButton from './ResetButton'
+import styles from '../Styling/calculator.module.css'
 
 const Buttons = ({
   handleAddition,
@@ -11,8 +12,8 @@ const Buttons = ({
   handleReset,
 }) => {
   return (
-    <Box display="flex" alignItems="center" justifyContent="center" width="100%" gap={1}>
-      <Box display="flex" gap={2} flexGrow={1} justifyContent="center" alignItems="center">
+    <Box className={styles.buttonContainer}>
+      <Box className={styles.buttonsGroup}>
         <AdditionButton
           handleAddition={handleAddition}
           error1={error1}
@@ -24,7 +25,7 @@ const Buttons = ({
           error2={error2}
         />
       </Box>
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <Box className={styles.resetButtonContainer}>
         <ResetButton handleReset={handleReset} />
       </Box>
     </Box>
