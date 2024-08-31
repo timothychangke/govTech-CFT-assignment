@@ -1,0 +1,8 @@
+# railway.toml
+
+[services]
+  [services.frontend]
+  path = "client" # Path to your React app
+
+  [services.backend]
+  path = "server" # Path to your Express app
