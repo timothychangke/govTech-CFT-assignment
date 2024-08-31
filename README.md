@@ -13,10 +13,6 @@ This project consists of a React frontend and an Express backend, containerized 
 - **Docker Integration**: Docker is used for containerizing the application, ensuring consistency across different environments.
 - **API Integration**: The frontend communicates with the backend via RESTful APIs, making it easy to extend and integrate with other services.
 
-```markdown
-# React & Express Application
-
-This project consists of a React frontend and an Express backend, containerized using Docker. This README provides detailed instructions on how to set up and run the application locally, as well as how to build and deploy Docker images.
 
 ## Table of Contents
 
