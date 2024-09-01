@@ -3,7 +3,8 @@
 This project consists of a React frontend and an Express backend, containerized using Docker. This README provides detailed instructions on how to set up and run the application locally, as well as how to build and deploy Docker images.
 
 
-https://github.com/user-attachments/assets/7a8221e3-10e6-47b0-b29e-8490ed792f06
+https://github.com/user-attachments/assets/77a35a0e-6900-4741-9cf9-6900fc7fe786
+
 
 
 ## Features
