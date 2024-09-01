@@ -9,7 +9,7 @@ https://github.com/user-attachments/assets/77a35a0e-6900-4741-9cf9-6900fc7fe786
 
 ## Features
 
-- **Input Validation**: The application includes robust input validation to ensure that user inputs are correct and within expected ranges. Features include integer overflow prevention, floating point inprecision and data type validation.
+- **Input Validation**: The application includes robust input validation to ensure that user inputs are correct and within expected ranges. Features include integer overflow and underflow prevention, floating point inprecision and data type validation.
 - **Reset Function**: A reset function is available to clear all inputs and results in the application.
 - **Local Storage Persistence**: User inputs and application state are persisted in local storage, allowing for data retention across sessions.
 - **Unit Testing**: Comprehensive unit tests are implemented using Jest and React Testing Library with an extensive list of test cases, ensuring that individual components and functionalities work as expected.
